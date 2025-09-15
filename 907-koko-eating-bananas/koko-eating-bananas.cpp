@@ -10,6 +10,7 @@ public:
             for (int bananas : piles) {
                 long long b = bananas;
                 total += (b + mid - 1) / mid;
+                if (total > h) break;
             }
             if (total <= h) {
                 end = mid - 1;
