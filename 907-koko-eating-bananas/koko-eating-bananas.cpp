@@ -1,15 +1,15 @@
 class Solution {
 public:
     int minEatingSpeed(vector<int>& piles, int h) {
-        long long sum = 0;
-        long long start = 1;
-        long long end = *max_element(piles.begin(), piles.end());
+        int start = 1;
+        int end = *max_element(piles.begin(), piles.end());
         int res = end;
         while (start <= end) {
             long long mid = start + (end - start) / 2;
             long long total = 0;
             for (int bananas : piles) {
-                total += (bananas + mid - 1) / mid; 
+                long long b = bananas;
+                total += (b + mid - 1) / mid;
             }
             if (total <= h) {
                 end = mid - 1;
