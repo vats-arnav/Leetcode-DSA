@@ -7,9 +7,11 @@ public:
         while (start <= end) {
             long long mid = start + (end - start) / 2;
             long long total = 0;
-            for (int bananas : piles) {
-                total += (bananas + mid - 1) / mid;
-                if (total > h) break;
+            for (size_t i = 0; i < piles.size(); ++i) {
+                total += ((long long)piles[i] + mid - 1) / mid;
+                if (total > h) {
+                    break;
+                }
             }
             if (total <= h) {
                 end = mid - 1;
