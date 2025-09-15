@@ -8,7 +8,7 @@ public:
             int mid = start + (end - start) / 2;
             long long total = 0;
             for (size_t i = 0; i < piles.size(); ++i) {
-                total += (piles[i] + mid - 1) / mid;
+                total += ((long long)piles[i] + mid - 1) / mid;
                 if (total > h) {
                     break;
                 }
