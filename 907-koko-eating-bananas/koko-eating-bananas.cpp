@@ -8,8 +8,7 @@ public:
             long long mid = start + (end - start) / 2;
             long long total = 0;
             for (int bananas : piles) {
-                long long b = bananas;
-                total += (b + mid - 1) / mid;
+                total += (bananas + mid - 1) / mid;
                 if (total > h) break;
             }
             if (total <= h) {
