@@ -17,9 +17,7 @@ public:
         }
         while (curr->next != nullptr) {
             if (curr->val == curr->next->val) {
-                ListNode* temp = curr->next;
                 curr->next = curr->next->next;
-                delete temp;
             } else {
                 curr = curr->next;
             }
