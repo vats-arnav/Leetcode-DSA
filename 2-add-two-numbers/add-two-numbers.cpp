@@ -14,7 +14,7 @@ public:
         ListNode dummy;
         ListNode* curr = &dummy;
         int carry = 0;
-        while (l1 || l2) {
+        while (l1 || l2||carry) {
             int sum = carry;
             if (l1) {
                 sum += l1->val;
@@ -27,9 +27,6 @@ public:
             curr->next = new ListNode(sum % 10);
             carry = sum / 10;
             curr = curr->next;
-        }
-        if (carry) {
-            curr->next = new ListNode(carry);
         }
         return dummy.next;
     }
