@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int missingNumber(vector<int>& nums) {
+    /*int missingNumber(vector<int>& nums) {
         int n = nums.size();
         int sum = n*(n+1)/2;
         cout<<sum;
@@ -9,5 +9,15 @@ public:
             sum2+= i;
         }
         return sum-sum2;
+    }*/
+    int missingNumber(vector<int>& nums) {
+        int sum=0;
+        for(int i:nums){
+            sum = sum^i;
+        }
+        for(int i =0;i<=nums.size();i++){
+            sum = sum^i;
+        }
+        return sum;
     }
 };
