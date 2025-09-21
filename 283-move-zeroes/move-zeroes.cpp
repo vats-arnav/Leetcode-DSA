@@ -6,15 +6,15 @@ public:
         int n = nums.size();
         while (rightp < n) {
             if (nums[rightp] != 0) {
-                swap(nums[leftp],nums[rightp]);
-                //nums[leftp] = nums[rightp];
+                // swap(nums[leftp],nums[rightp]);
+                nums[leftp] = nums[rightp];
                 leftp++;
             }
             rightp++;
         }
-        /*while (leftp < n) {
+        while (leftp < n) {
             nums[leftp] = 0;
             leftp++;
-        }*/
+        }
     }
 };
