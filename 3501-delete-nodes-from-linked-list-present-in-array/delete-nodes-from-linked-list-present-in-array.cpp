@@ -13,7 +13,10 @@ public:
     ListNode* modifiedList(vector<int>& nums, ListNode* head) {
         ListNode* ans = new ListNode(0, head);
         ListNode* temp = ans;
-        unordered_set<int> s1 (nums.begin() , nums.end());
+        unordered_set<int> s1;
+        for (int i : nums) {
+            s1.insert(i);
+        }
 
         while (temp->next != nullptr) {
             if (s1.count(temp->next->val)) {
