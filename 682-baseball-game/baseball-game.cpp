@@ -10,7 +10,7 @@ public:
                 int b = st.top();
                 st.push(a); 
                 st.push(a + b);
-                sum += a;
+                sum+= a;
                 sum+=b;
 
             } else if (s == "D") {
