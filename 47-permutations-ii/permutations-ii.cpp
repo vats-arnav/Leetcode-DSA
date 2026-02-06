@@ -11,7 +11,6 @@ public:
             ans.push_back(nums);
             return;
         }
-
         unordered_set<int> used;
         for(int i=index;i<nums.size();i++){
             if(used.count(nums[i])){
