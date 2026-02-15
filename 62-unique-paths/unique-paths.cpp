@@ -1,31 +1,33 @@
-// #tabulation
+// SO
 class Solution {
 public:
-    int f(int m, int n, vector<vector<int>>& dp) {
+    int f(int m, int n, vector<int>& dp) {
         for (int i = 0; i < m; i++) {
+            vector<int> temp(n, 0);
             for (int j = 0; j < n; j++) {
-            int d = 0, r = 0;
+                int d = 0, r = 0;
                 if (i == 0 && j == 0) {
-                    dp[0][0] = 1;
+                    temp[0] = 1;
                 } else {
-                    if (i > 0)
-                        d = dp[i - 1][j];
                     if (j > 0)
-                        r = dp[i][j - 1];
-                    dp[i][j] = r+d;
+                        d = temp[j-1];
+                    if (i > 0)
+                        r = dp[j];
+                    temp[j] = r + d;
                 }
             }
+            dp = temp;
         }
-
-        return dp[m - 1][n - 1];
+        return dp[n - 1];
     }
 
     int uniquePaths(int m, int n) {
-        vector<vector<int>> dp(m, vector<int>(n));
-        return f(m, n,dp);
+        vector<int> dp(n, 0);
+        return f(m, n, dp);
     }
 };
 
+// #tabulation
 // #memoization
 //  class Solution {
 //  public:
