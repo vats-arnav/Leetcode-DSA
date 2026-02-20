@@ -2,17 +2,15 @@
 class Solution {
 public:
     int coinChange(vector<int>& coins, int amount) {
-        vector<vector<int>> dp(coins.size(), vector<int>(amount + 1, 1e9));
-        if(amount==0){
+        if (amount == 0) {
             return 0;
         }
-        int ans = f(0, coins, amount, dp);
+        int ans = f(0, coins, amount);
         return ans >= 1e9 ? -1 : ans;
     }
 
-    int f(int index, vector<int>& coins, int amount, vector<vector<int>>& dp) {
+    int f(int index, vector<int>& coins, int amount) {
         vector<int> prev(amount + 1, 1e9), curr(amount + 1, 1e9);
-
         if (index == 0) {
             for (int i = 0; i <= amount; i++) {
                 if (i % coins[0] == 0) {
