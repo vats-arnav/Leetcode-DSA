@@ -26,30 +26,62 @@
 
 // }};
 
+// SO
+// class Solution {
+// public:
+//     int f(vector<int>& coins, int amount) {
+//         vector<unsigned long long> prev(amount + 1, 0), curr(amount + 1, 0);
+
+//         for (int i = 0; i <= amount; i++) {
+//             if (i % coins[0] == 0) {
+//                 prev[i] = 1;
+//             } else {
+//                 prev[i] = 0;
+//             }
+//         }
+//         for (int i = 1; i < coins.size(); i++) {
+//             for (int j = 0; j <= amount; j++) {
+//                 unsigned long long ntake = prev[j];
+//                 unsigned long long take = 0;
+//                 if (j >= coins[i]) {
+//                     take = curr[j - coins[i]];
+//                 }
+//                 curr[j] = take + ntake;
+//             }
+//             prev = curr;
+//         }
+//         return (int)prev[amount];
+//     }
+//     int change(int amount, vector<int>& coins) {
+//         int ans = f(coins, amount);
+//         return ans;
+//     }
+// };
+
+
 class Solution {
 public:
     int f(vector<int>& coins, int amount) {
-        vector<unsigned long long> prev(amount + 1, 0), curr(amount + 1, 0);
+        vector<unsigned long long> curr(amount + 1, 0);
 
         for (int i = 0; i <= amount; i++) {
             if (i % coins[0] == 0) {
-                prev[i] = 1;
+                curr[i] = 1;
             } else {
-                prev[i] = 0;
+                curr[i] = 0;
             }
         }
         for (int i = 1; i < coins.size(); i++) {
             for (int j = 0; j <= amount; j++) {
-                unsigned long long ntake = prev[j];
+                unsigned long long ntake = curr[j];
                 unsigned long long take = 0;
                 if (j >= coins[i]) {
                     take = curr[j - coins[i]];
                 }
                 curr[j] = take + ntake;
             }
-            prev = curr;
         }
-        return (int)prev[amount];
+        return (int)curr[amount];
     }
     int change(int amount, vector<int>& coins) {
         int ans = f(coins, amount);
