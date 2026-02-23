@@ -1,33 +1,75 @@
+//1D
 class Solution {
 public:
     int longestCommonSubsequence(string text1, string text2) {
-        vector<vector<int>> dp(text1.size() + 1,
-                               vector<int>(text2.size() + 1, -1));
-        return f(text1, text2, dp);
+        return f(text1, text2);
     }
 
-    int f(const string& text1, const string& text2, vector<vector<int>>& dp) {
+    int f(const string& text1, const string& text2) {
         int n1 = text1.size();
         int n2 = text2.size();
+        vector<int> prev(text2.size() + 1,0),curr(text2.size() + 1,0);
         for (int i = 0; i <= n2; i++) {
-            dp[0][i] = 0;
-        }
-        for (int i = 0; i <= n1; i++) {
-            dp[i][0] = 0;
+            prev[i] =0;
         }
         for (int i = 1; i <= n1; i++) {
             for (int j = 1; j <= n2; j++) {
                 if (text1[i - 1] == text2[j- 1]) {
-                    dp[i][j] = 1 + dp[i - 1][j - 1];
+                    curr[j] = 1 + prev[j - 1];
                 } else {
-                    dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+                    curr[j] = max(prev[j], curr[j - 1]);
                 }
             }
+            prev = curr;
         }
 
-        return dp[n1][n2];
+        return curr[n2];
     }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+//2D
+// class Solution {
+// public:
+//     int longestCommonSubsequence(string text1, string text2) {
+//         vector<vector<int>> dp(text1.size() + 1,
+//                                vector<int>(text2.size() + 1, -1));
+//         return f(text1, text2, dp);
+//     }
+
+//     int f(const string& text1, const string& text2, vector<vector<int>>& dp) {
+//         int n1 = text1.size();
+//         int n2 = text2.size();
+//         for (int i = 0; i <= n2; i++) {
+//             dp[0][i] = 0;
+//         }
+//         for (int i = 0; i <= n1; i++) {
+//             dp[i][0] = 0;
+//         }
+//         for (int i = 1; i <= n1; i++) {
+//             for (int j = 1; j <= n2; j++) {
+//                 if (text1[i - 1] == text2[j- 1]) {
+//                     dp[i][j] = 1 + dp[i - 1][j - 1];
+//                 } else {
+//                     dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+//                 }
+//             }
+//         }
+
+//         return dp[n1][n2];
+//     }
+// };
 
 // memoization
 //  class Solution {
