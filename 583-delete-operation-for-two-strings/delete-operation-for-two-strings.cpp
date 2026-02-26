@@ -1,9 +1,7 @@
 class Solution {
 public:
     int minDistance(string word1, string word2) {
-        int x = f(word1, word2);
-        int z = min(word1.size(),word2.size()) -x;
-        return max(word1.size(),word2.size()) - x+z;
+        return word1.size()+word2.size() -(2*f(word1,word2)) ;
     }
 
     int f(const string& text1, const string& text2) {
