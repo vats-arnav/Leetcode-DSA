@@ -19,9 +19,9 @@ public:
                     profit = max(prev[1],-prices[i] + prev[0]);
                 }
 
-                prev[j] = profit;
+                curr[j] = profit;
             }
-            //prev = curr;
+            prev = curr;
         }
         return (int)prev[0];
     }
