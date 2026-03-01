@@ -5,31 +5,71 @@ public:
     int f(int z,vector<int>& prices) {
         int n = prices.size();
         long profit;
-        vector<vector<long>> curr(2, vector<long>(z+1,0));
-        vector<vector<long>> prev(2, vector<long>(z+1,0));
-        for(int k = 1; k <= z; k++) {
-            prev[1][k] = -prices[0];
+        vector<long> curr(2*z+1, 0);
+        vector<long> prev(2*z+1, 0);
+        for(int i=1;i<=2*z;i+=2){
+            prev[i]=-prices[0];
         }
         for (int i = 1; i < n; i++) {
-            for (int j = 0; j <= 1; j++) {
-                for (int k = 1; k <= z; k++) {
-                    if (j == 0) {
-                        profit =
-                            max(prev[0][k], +prices[i] + prev[1][k]);
-                    }
-                    if (j == 1) {
-                        profit =
-                            max(prev[1][k], -prices[i] + prev[0][k-1]);
-                    }
-
-                    curr[j][k] = profit;
+            for (int j = 1; j <= 2*z; j++) {
+                if (j%2== 0) {
+                    profit = max(prev[j], +prices[i] + prev[j-1]);
                 }
+                else {
+                    profit = max(prev[j], -prices[i] + prev[j-1]);
+                }
+
+                curr[j]= profit;
             }
             prev = curr;
         }
-        return (int)prev[0][z];
+        return (int)prev[2*z];
     }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+// class Solution {
+// public:
+//     int maxProfit(int k,vector<int>& prices) { return f(k,prices); }
+
+//     int f(int z,vector<int>& prices) {
+//         int n = prices.size();
+//         long profit;
+//         vector<vector<long>> curr(2, vector<long>(z+1,0));
+//         vector<vector<long>> prev(2, vector<long>(z+1,0));
+//         for(int k = 1; k <= z; k++) {
+//             prev[1][k] = -prices[0];
+//         }
+//         for (int i = 1; i < n; i++) {
+//             for (int j = 0; j <= 1; j++) {
+//                 for (int k = 1; k <= z; k++) {
+//                     if (j == 0) {
+//                         profit =
+//                             max(prev[0][k], +prices[i] + prev[1][k]);
+//                     }
+//                     if (j == 1) {
+//                         profit =
+//                             max(prev[1][k], -prices[i] + prev[0][k-1]);
+//                     }
+
+//                     curr[j][k] = profit;
+//                 }
+//             }
+//             prev = curr;
+//         }
+//         return (int)prev[0][z];
+//     }
+// };
 
 
 
