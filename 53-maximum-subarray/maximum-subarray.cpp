@@ -10,8 +10,8 @@ public:
             if(sum<0){
                 sum =0;
             }
-            m = max(m,sum+nums[i]);
             sum += nums[i];
+            m = max(m,sum);
         }
     return m;
     }
