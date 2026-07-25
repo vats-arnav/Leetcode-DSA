@@ -7,25 +7,25 @@ public:
             xr = xr ^ nums[i];
             xr = xr ^ (i + 1);
         }
-
-        int bit = 0;
-        while (1) {
-            if ((xr & (1 << bit)) != 0) {
-                break;
-            }
-            bit++;
-        }
+        
+        int bit = xr & ~(xr-1);
+        // while (1) {
+        //     if ((xr & (1 << bit)) != 0) {
+        //         break;
+        //     }
+        //     bit++;
+        // }
         int z = 0;
         int one = 0;
         for (int i = 0; i < n; i++) {
-            if ((nums[i] & 1 << bit) != 0) {
+            if ((nums[i] & bit) != 0) {
                 one = one ^ nums[i];
             } else {
                 z = z ^ nums[i];
             }
         }
         for (int i = 1; i <= n; i++) {
-            if ((i & 1 << bit) != 0) {
+            if ((i & bit) != 0) {
                 one = one ^ i;
             } else {
                 z = z ^ i;
