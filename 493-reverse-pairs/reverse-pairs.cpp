@@ -28,7 +28,7 @@ public:
         int right = mid + 1;
         int count = 0;
         for (int i = low; i <= mid; i++) {
-            while (right <= high && nums[i] > 2 * 1LL * (nums[right]))
+            while (right <= high && (long long)nums[i] > 2 * 1LL * (nums[right]))
                 right++;
             count += right - (mid + 1);
         }
