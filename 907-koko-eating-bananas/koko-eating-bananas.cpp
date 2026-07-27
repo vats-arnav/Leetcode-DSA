@@ -20,6 +20,6 @@ public:
                 start = mid + 1;
             }
         }
-        return res;
+        return start;
     }
 };
