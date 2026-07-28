@@ -14,7 +14,7 @@ public:
                 right = mid - 1;
             }
         }
-        return ans;
+        return right;
     }
     bool check(vector<int>& arr, int k, int mid) {
         int count = 1;
