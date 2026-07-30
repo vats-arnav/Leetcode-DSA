@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int maxr(vector<vector<int>> arr, int col) {
+    int maxr(vector<vector<int>>& arr, int col) {
         int n = arr.size();
         int v = INT_MIN;
         int index = 0;
