@@ -14,7 +14,7 @@ public:
             ans.push_back(temp);
             return;
         }
-        for (int i = index; i < s.size(); ++i) {
+        for (int i = index; i < s.size(); i++) {
             if (checkPalindrom(index, i, s)){
                 temp.push_back(s.substr(index, i - index + 1));
                 solve(i + 1, s, ans, temp);
