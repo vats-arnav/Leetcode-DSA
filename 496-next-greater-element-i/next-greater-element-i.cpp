@@ -1,4 +1,4 @@
-class Solution {
+/***class Solution {
 public:
     vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums) {
         stack<int> st;
@@ -19,6 +19,32 @@ public:
             }
             st.push(nums[i]);
         }
+        return res;
+    }
+};*/
+
+class Solution {
+public:
+    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums) {
+        stack<int> st;
+        unordered_map<int, int> next;
+
+        for (int i = nums.size() - 1; i >= 0; i--) {
+            while (!st.empty() && st.top() <= nums[i]) {
+                st.pop();
+            }
+
+            next[nums[i]] = st.empty() ? -1 : st.top();
+
+            st.push(nums[i]);
+        }
+
+        vector<int> res;
+
+        for (int x : nums1) {
+            res.push_back(next[x]);
+        }
+
         return res;
     }
 };
