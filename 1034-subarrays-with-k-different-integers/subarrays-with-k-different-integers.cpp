@@ -4,7 +4,7 @@ public:
         int val = 0;
         int n = nums.size();
         int l = 0;
-        unordered_map<int, int> freq;
+        vector<int> freq(n + 1, 0); 
         for (int i = 0; i < n; i++) {
             if (freq[nums[i]] == 0) {
                 k--;
