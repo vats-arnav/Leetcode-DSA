@@ -16,7 +16,7 @@ public:
         if (!root)
             return 0;
         int maxWidth = 0;
-        queue<pair<TreeNode*, int>> q;
+        queue<pair<TreeNode*, long long>> q;
 
         q.push({root, 0});
         while (!q.empty()) {
