@@ -1,44 +1,32 @@
 class Solution {
 public:
-    int numIslands(vector<vector<char>>& grid) {
-        int rows = grid.size();
-        int cols = grid[0].size();
+    int m, n;
 
-        vector<vector<int>> visited(rows, vector<int>(cols, 0));
+    void dfs(vector<vector<char>>& grid, int r, int c) {
+        if (r < 0 || r >= m || c < 0 || c >= n || grid[r][c] == '0')
+            return;
+
+        grid[r][c] = '0';
+
+        dfs(grid, r + 1, c);
+        dfs(grid, r - 1, c);
+        dfs(grid, r, c + 1);
+        dfs(grid, r, c - 1);
+    }
+
+    int numIslands(vector<vector<char>>& grid) {
+        m = grid.size();
+        n = grid[0].size();
 
         int islands = 0;
 
-        int dr[] = {-1, 1, 0, 0};
-        int dc[] = {0, 0, -1, 1};
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
 
-        for (int r = 0; r < rows; r++) {
-            for (int c = 0; c < cols; c++) {
-
-                if (grid[r][c] == '1' && !visited[r][c]) {
+                if (grid[i][j] == '1') {
                     islands++;
 
-                    queue<pair<int, int>> q;
-                    q.push({r, c});
-                    visited[r][c] = 1;
-
-                    while (!q.empty()) {
-                        auto [row, col] = q.front();
-                        q.pop();
-
-                        for (int k = 0; k < 4; k++) {
-                            int nr = row + dr[k];
-                            int nc = col + dc[k];
-
-                            if (nr >= 0 && nr < rows &&
-                                nc >= 0 && nc < cols &&
-                                grid[nr][nc] == '1' &&
-                                !visited[nr][nc]) {
-
-                                visited[nr][nc] = 1;
-                                q.push({nr, nc});
-                            }
-                        }
-                    }
+                    dfs(grid, i, j);
                 }
             }
         }
